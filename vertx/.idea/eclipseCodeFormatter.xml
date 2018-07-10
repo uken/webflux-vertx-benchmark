@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatterProjectSettings">
+    <option name="projectSpecificProfile">
+      <ProjectSpecificProfile>
+        <option name="pathToConfigFileJava" value="$USER_HOME$/Documents/uken-java-25-07-2017.xml" />
+        <option name="selectedJavaProfile" value="Uken Java 25/07/2017" />
+      </ProjectSpecificProfile>
+    </option>
+  </component>
+</project>
