@@ -2,6 +2,7 @@ package com.uken.benchmark.netty.web;
 
 import static io.netty.buffer.Unpooled.wrappedBuffer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,6 +16,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpUtil;
 import io.netty.handler.codec.http.HttpVersion;
 import io.netty.util.AsciiString;
+import java.util.Map;
 import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,8 @@ public class HttpControllerHandler extends SimpleChannelInboundHandler<FullHttpR
   private final Logger logger = LoggerFactory.getLogger(HttpControllerHandler.class);
 
   @Autowired private PathHandlerProvider pathHandlerProvider;
+
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
   protected void channelRead0(
@@ -48,6 +52,9 @@ public class HttpControllerHandler extends SimpleChannelInboundHandler<FullHttpR
 
     if (response instanceof String) {
       responseBody = String.valueOf(response);
+    } else if (response instanceof Map) {
+      mediaType = HttpHeaderValues.APPLICATION_JSON;
+      responseBody = objectMapper.writeValueAsString(response);
     }
 
     writeResponse(channelHandlerContext, responseStatus, mediaType, responseBody);
