@@ -22,3 +22,12 @@ java -jar ./target/netty-0.0.1-SNAPSHOT.jar
 (POST)/text    , will echo what ever text from body to the response
 
 (GET)/get_text , will send "hello" text to the response
+
+
+# Result
+wrk -d60s -t30 -c100 -R 500000 -s post.lua http://xxxxx/text
+
+On single wrk instance, single http server working thread
+VERTX   91K/s 
+WEBFLUX 20K/s
+NETTY   100K/s
