@@ -11,7 +11,7 @@
   <properties>
     <!-- the main class -->
     <main.class>com.uken.benchmark.App</main.class>
-    <stack.version>3.5.1</stack.version>
+    <stack.version>3.9.4</stack.version>
   </properties>
 
   <repositories>
